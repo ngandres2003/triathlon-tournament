@@ -1,0 +1,56 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 62.5% ; /*1rem = 10px*/
+    line-height: 1.4;
+    font-family: "Oswald", sans-serif;;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background-color:#00CED1;
+}
+
+
+header  h1 a{
+    margin-left: 35px;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: white;
+}
+
+header nav  ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    margin: 0 15px 0 15px;
+}
+
+header nav ul  li a{
+    text-decoration: none;
+    color:white;
+    font-size: .9rem;
+    font-weight: bold;
+}
+.main-container{
+    
+    width: 100%;
+    height: 80vh;
+
+}
+
+.main-container img{
+    min-width: 80%;
+    max-width:80%;
+    height: 100%;
+ 
+}
