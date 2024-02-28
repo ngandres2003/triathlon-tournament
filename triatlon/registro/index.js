@@ -1,4 +1,3 @@
-
 const atletas = [] //Almacenara los datos siempre y cuando no se reinicie la pag
 
 // Recibe el evento del formulario y evita recargar la pagina para que los datos se guarden en la lista
@@ -92,7 +91,7 @@ function removeProduct(element) {
   const row = element.parentNode.parentNode;
   const cedula = row.getElementsByTagName("td")[2].innerHTML;
   row.parentNode.removeChild(row);
-  
+
   //Elimino el atleta de la lista
   for (let atleta of atletas){
     if (atleta.cedula===cedula){
@@ -101,26 +100,6 @@ function removeProduct(element) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.getElementById('nombre').addEventListener('input', function() {
     // Expresión regular para validar que no haya números

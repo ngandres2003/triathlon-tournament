@@ -91,6 +91,8 @@ main p{
 
 .formulario-container{
     width: 40%;
+    min-width: 380px;
+    max-width:500px ;
     height: 450px;
     padding: 15px;
     background:#007c7e;
@@ -117,7 +119,7 @@ main p{
 }
 
 .formulario__nombre input, .formulario__apellido input, .formulario__cedula input, .formulario__municipio input, .formulario__fecha input{
-    width: 300px;
+    width: 90%;
     border-radius: 4px;
     border: 0;
     height: 23px;
@@ -145,6 +147,8 @@ main p{
 }
 .tabla-container{
     width: 34%;
+    min-width: 290px;
+    max-width:500px ;
     height: 450px;
     padding: 15px;
     background:#007c7e;
@@ -174,4 +178,14 @@ main p{
     font-size: .9rem;
     width: 33%;
     border:white solid 2px;
+}
+
+
+@media screen and (max-width: 800px){
+    .registro-container{
+        flex-wrap: wrap;
+        
+    }
+    
+
 }
