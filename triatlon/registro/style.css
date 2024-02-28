@@ -1,0 +1,177 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-size: 62.5% ; /*1rem = 10px*/
+    line-height: 1.4;
+    font-family: "Oswald", sans-serif;
+    overflow-x: hidden;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background-color:#00CED1;
+}
+
+header  h1 a{
+    margin-left: 35px;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+header .navbar {
+    position: relative;
+    display: flex;
+    margin-right: 30px;
+}
+
+header .navbar li{
+    list-style: none;
+    margin-right: 30px;
+}
+
+header .navbar li a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    transition: 0.4s;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    background-color: #007c7e;
+    border-radius: 15%;
+}
+
+header .navbar li a:hover{
+    color: #007c7e;
+    background-color: white;
+}
+
+main{
+    width: 100%;
+    height: 70vh;
+    padding-bottom: 30px;
+}
+
+main h1{
+    text-align: center;
+    padding-top: 18px;
+    font-size: 2rem;
+    color: #007c7e;
+}
+
+main p{
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1rem;
+    color: black;
+
+}
+
+.registro-container{
+    width: 70%;
+    display: flex;
+    justify-content:center ;
+    gap: 40px;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 80px;
+   
+    
+}
+
+.formulario-container{
+    width: 40%;
+    height: 450px;
+    padding: 15px;
+    background:#007c7e;
+    color:white;
+    border-radius: 4px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+    -moz-box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+    box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+}
+
+.formulario-container h2{
+    font-size: 1.7rem;
+}
+
+.formulario-container label{
+    font-size: 1rem;
+}
+
+.formulario__nombre, .formulario__apellido, .formulario__cedula, .formulario__municipio, .formulario__fecha{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.formulario__nombre input, .formulario__apellido input, .formulario__cedula input, .formulario__municipio input, .formulario__fecha input{
+    width: 300px;
+    border-radius: 4px;
+    border: 0;
+    height: 23px;
+    
+}
+
+.formulario-container button{
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 15%;
+    border: 0;
+    width: 120px;
+    height: 30px;
+    background-color:#00CED1;
+    color: white;
+    font-weight: bold;
+}
+
+
+.formulario-container button:hover {
+    transform: scale(1.03);
+    background:white ;
+    color:#007c7e;
+}
+.tabla-container{
+    width: 34%;
+    height: 450px;
+    padding: 15px;
+    background:#007c7e;
+    color:white;
+    border-radius: 4px;
+    -webkit-box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+    -moz-box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+    box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
+    overflow-y: auto; 
+   
+
+}
+
+.tabla-container h2{
+    font-size: 1.7rem;
+}
+
+.tabla-container table{
+    width: 100%;
+}
+
+.tabla-container table th{
+    font-size: 1rem;
+}
+.tabla-container table td{
+    text-align: center;
+    font-size: .9rem;
+    width: 33%;
+    border:white solid 2px;
+}

@@ -1,0 +1,153 @@
+
+const atletas = [] //Almacenara los datos siempre y cuando no se reinicie la pag
+
+// Recibe el evento del formulario y evita recargar la pagina para que los datos se guarden en la lista
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    
+    agregarAtleta();
+  });
+});
+
+
+// 
+function agregarAtleta(){
+ 
+  // Capturamos los datos del input
+  let nombre = document.getElementById("nombre").value
+  let apellido = document.getElementById("apellido").value
+  let cedula = document.getElementById("cedula").value
+  let municipio = document.getElementById("municipio").value
+  let edad = document.getElementById("edad").value 
+
+  // Validamos si la cedula se registro anteriormente
+  const cedulaValidada = validarCedula(cedula)
+
+  // Validamos que la edad sea mayor a 18
+  if (parseInt(edad) < 18){
+    alert("El atleta debe ser mayor de edad")
+    document.getElementById("edad").value = "";
+   
+    return false  
+  }
+
+  else if(cedulaValidada === false){
+    alert("Cedula ya registrada")
+    document.getElementById("cedula").value = "";
+    return false
+}
+  
+  // Creamos objeto de tipo atleta
+  const atleta = {
+    nombre:nombre,
+    apellido:apellido,
+    cedula:cedula,
+    municipio:municipio,
+    edad:edad
+  }
+
+
+  atletas.push(atleta)//Almacenamos el atleta registrado a nuestra lista
+  agregarAtletaTabla(atleta)// Agreamos al atleta a la tabla
+
+  // Vaciamos los inputs del formulario
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
+  document.getElementById("cedula").value = "";
+  document.getElementById("municipio").value = "";
+  document.getElementById("edad").value = "";
+
+  alert("Atleta registrado exitosamente")
+  
+}
+
+
+//Valida si la  cedula existe en la lista de atletas
+function validarCedula(cedula){
+
+  for (let atleta of atletas){
+    if(atleta.cedula === cedula){
+      return false
+    }
+  }
+
+  return true
+}
+
+
+
+// Agrega el atleta a la tabla
+function agregarAtletaTabla(atleta){
+  let table = document.getElementById("table");
+  let fila = document.createElement("tr");
+  // newRow.setAttribute("data-product", selectedOption.value);
+  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td><span class='remove-product' onclick='removeProduct(this)'>x</span></td>";
+  table.appendChild(fila);
+
+}
+
+// Elimina un atleta
+function removeProduct(element) {
+  const row = element.parentNode.parentNode;
+  const cedula = row.getElementsByTagName("td")[2].innerHTML;
+  row.parentNode.removeChild(row);
+  
+  //Elimino el atleta de la lista
+  for (let atleta of atletas){
+    if (atleta.cedula===cedula){
+      atletas.splice(atletas.indexOf(atleta),1)
+      break
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('nombre').addEventListener('input', function() {
+    // Expresión regular para validar que no haya números
+    var regex = /^[^\d]+$/;
+    var textoInput = this.value;
+    
+    if (!regex.test(textoInput)) {
+      this.value = textoInput.replace(/\d/g, ''); // Elimina los números del valor del input
+    }
+  });
+
+document.getElementById('apellido').addEventListener('input', function() {
+    // Expresión regular para validar que no haya números
+    var regex = /^[^\d]+$/;
+    var textoInput = this.value;
+    
+    if (!regex.test(textoInput)) {
+      this.value = textoInput.replace(/\d/g, ''); // Elimina los números del valor del input
+    }
+});
+
+document.getElementById('municipio').addEventListener('input', function() {
+    // Expresión regular para validar que no haya números
+    var regex = /^[^\d]+$/;
+    var textoInput = this.value;
+    
+    if (!regex.test(textoInput)) {
+      this.value = textoInput.replace(/\d/g, ''); // Elimina los números del valor del input
+    }
+});
