@@ -48,7 +48,8 @@ function agregarAtleta(){
     apellido:apellido,
     cedula:cedula,
     municipio:municipio,
-    edad:edad
+    edad:edad,
+    asistencia:false
   }
 
 
@@ -79,19 +80,16 @@ function validarCedula(cedula){
   return true
 }
 
-
-
 // Agrega el atleta a la tabla
 function agregarAtletaTabla(atleta){
   let table = document.getElementById("table");
   let fila = document.createElement("tr");
-  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad + "</td><td><span class='remove-product' onclick='removeProduct(this)'>x</span></td>";
+  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad + "</td><td><span class='remove-product' onclick='removeElement(this)'>x</span></td>";
   table.appendChild(fila);
 }
 
-
 // Elimina un atleta
-function removeProduct(element) {
+function removeElement(element) {
   const row = element.parentNode.parentNode;
   const cedula = row.getElementsByTagName("td")[2].innerHTML;
   row.parentNode.removeChild(row);
@@ -143,4 +141,49 @@ function validateInput() {
     alert("Ingresa un valor de cédula valido");
     document.getElementById("ValidateC").value = "";
   }
+
+  else{
+    checkAtleta()
+  }
+}
+
+//Comprueba que el atleta ingresado al evento se inscribio previamente
+function checkAtleta(){
+  const cedula = document.getElementById("ValidateC").value;
+
+  const validacion = validarCedula(cedula)
+
+  if(validacion === true){
+
+    document.getElementById("ValidateC").value = "";
+    alert("Atleta no inscrito")
+  }
+  
+  else{
+    //agregamos atleta a la tabla
+    let atleta = "";
+    for (let persona of atletas){
+      if(persona.cedula === cedula){
+        atleta =persona
+      }
+    }
+
+    if (atleta.asistencia === true){
+      alert("Atleta ya registrado")
+      document.getElementById("ValidateC").value = "";
+    }else{
+      atleta.asistencia = true;
+      agregarAtletaTabla2(atleta);
+    }
+    
+  }
+
+}
+
+function agregarAtletaTabla2(atleta){
+  let table = document.getElementById("table-competition");
+  let fila = document.createElement("tr");
+  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad ;
+  table.appendChild(fila);
+
 }
