@@ -105,26 +105,6 @@ function removeProduct(element) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.getElementById('nombre').addEventListener('input', function() {
     // Expresión regular para validar que no haya números
     var regex = /^[^\d]+$/;
@@ -154,3 +134,13 @@ document.getElementById('municipio').addEventListener('input', function() {
       this.value = textoInput.replace(/\d/g, ''); // Elimina los números del valor del input
     }
 });
+
+function validateInput() {
+  var input = document.getElementById("ValidateC").value;
+  var numbers = /^[0-9]+$/;
+  
+  if (!input.match(numbers)) {
+    alert("Ingresa un valor de cédula valido");
+    document.getElementById("ValidateC").value = "";
+  }
+}
