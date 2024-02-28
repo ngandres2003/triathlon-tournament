@@ -40,7 +40,6 @@ function agregarAtleta(){
 }
   else if(typeof cedulaValidada === "string" && /[a-zA-Z]/.test.apply(cedulaValidada)){
     alert("Ingrese una cedula valida.");
-    return false
   }
   
   // Creamos objeto de tipo atleta
@@ -103,17 +102,6 @@ function removeProduct(element) {
       atletas.splice(atletas.indexOf(atleta),1)
       break
     }
-  }
-}
-
-// Validar entrada del boton de verificacion
-function validateInput() {
-  var input = document.getElementById("ValidateC").value;
-  var numbers = /^[0-9]+$/;
-  
-  if (!input.match(numbers)) {
-    alert("Ingresa un valor de cédula valido");
-    document.getElementById("ValidateC").value = "";
   }
 }
 
