@@ -25,18 +25,23 @@ function agregarAtleta(){
   const cedulaValidada = validarCedula(cedula)
 
   // Validamos que la edad sea mayor a 18
-  if (parseInt(edad) < 18){
-    alert("El atleta debe ser mayor de edad")
+  if ((parseInt(edad) < 18) || (parseInt(edad) > 70)){
+    alert("El atleta debe ser mayor de edad y menor a 70 años")
     document.getElementById("edad").value = "";
    
     return false  
   }
+
 
   else if(cedulaValidada === false){
     alert("Cedula ya registrada")
     document.getElementById("cedula").value = "";
     return false
 }
+  else if(typeof cedulaValidada === "string" && /[a-zA-Z]/.test.apply(cedulaValidada)){
+    alert("Ingrese una cedula valida.");
+    return false
+  }
   
   // Creamos objeto de tipo atleta
   const atleta = {
@@ -81,11 +86,10 @@ function validarCedula(cedula){
 function agregarAtletaTabla(atleta){
   let table = document.getElementById("table");
   let fila = document.createElement("tr");
-  // newRow.setAttribute("data-product", selectedOption.value);
-  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td><span class='remove-product' onclick='removeProduct(this)'>x</span></td>";
+  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad + "</td><td><span class='remove-product' onclick='removeProduct(this)'>x</span></td>";
   table.appendChild(fila);
-
 }
+
 
 // Elimina un atleta
 function removeProduct(element) {
@@ -99,6 +103,17 @@ function removeProduct(element) {
       atletas.splice(atletas.indexOf(atleta),1)
       break
     }
+  }
+}
+
+// Validar entrada del boton de verificacion
+function validateInput() {
+  var input = document.getElementById("ValidateC").value;
+  var numbers = /^[0-9]+$/;
+  
+  if (!input.match(numbers)) {
+    alert("Ingresa un valor de cédula valido");
+    document.getElementById("ValidateC").value = "";
   }
 }
 
