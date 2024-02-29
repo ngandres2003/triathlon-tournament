@@ -175,7 +175,6 @@ function checkAtleta(){
       atleta.asistencia = true;
       agregarAtletaTabla2(atleta);
     }
-    
   }
 
 }
