@@ -409,11 +409,24 @@ for (var i = 0; i < datos.length; i++) {
 }
 
 
+function ordenarTabla() {
+  const table = document.querySelector('#table-competition tbody');
+  const rows = table.querySelectorAll('tr');
 
-  
+  const resultsTable = document.querySelector('#results tbody');
+  const resultsTableHead = document.querySelector('#table-competition thead');
 
+  const sortedRows = Array.from(rows).sort((a, b) => {
+      const timeA = a.querySelector('td:nth-child(12)').textContent;
+      const timeB = b.querySelector('td:nth-child(12)').textContent;
 
+      const secondsA = timeA.split(':').reduce((total, value, index) => total + value * Math.pow(60, 2 - index), 0);
+      const secondsB = timeB.split(':').reduce((total, value, index) => total + value * Math.pow(60, 2 - index), 0);
 
+      return secondsA - secondsB;
+  });
 
-  
+  resultsTable.innerHTML = resultsTableHead.innerHTML;
+  sortedRows.forEach(row => resultsTable.appendChild(row));
+}
 

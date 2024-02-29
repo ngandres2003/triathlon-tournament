@@ -266,9 +266,37 @@ main p{
     
 }
 
+.order-button{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+}
 
-.table-dns {
-    width: 60%;
+.order{
+    text-decoration: none;
+    width: 200px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    transition: 0.4s;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    background-color: #007c7e;
+    border-radius: 15%;
+    border: 5px solid white;
+    cursor: pointer;
+}
+
+.order:hover{
+    color:#007c7e;
+    background-color:white;
+}
+
+.table-results {
+    width: 70%;
     height: 450px;
     padding: 15px;
     margin-top: 40px;
@@ -282,19 +310,19 @@ main p{
     -moz-box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
     box-shadow: -2px 3px 15px 0px rgba(51,32,51,0.36);
 }
-.tabla-dns table{
-    width: 70%;
+.table-results table{
+    width: 100%;
 }
-.table-dns h2{
+.table-results h2{
     font-size: 1.7rem;
     margin-bottom: 10px;
 }
 
-.table-dns table th{
+.table-results table th{
     padding: 0 5px;
     font-size: 1rem;
 }
-.table-dns table td{
+.table-results table td{
     text-align: center;
     font-size: .9rem;
     border:white solid 2px;
