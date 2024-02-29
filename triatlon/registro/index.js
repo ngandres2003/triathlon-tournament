@@ -1,5 +1,52 @@
 
-const atletas = [] //Almacenara los datos siempre y cuando no se reinicie la pag
+const atletas = [
+  {
+    nombre:"Andres",
+    apellido:"Ng",
+    cedula:"29764828",
+    municipio:"puerto",
+    edad:"45",
+    asistencia:false,
+    horasTriatlon: {
+      hiCaminata:0,
+      hfCaminata:0,
+      hiNatacion:0,
+      hfNatacion:0,
+      hiCiclismo:0,
+      hfCiclismo:0
+
+    },
+    triatlon: {
+      tiempoT:0,
+      caminata:0,
+      natacion:0,
+      ciclismo:0,   
+    }
+  },{
+    nombre:"Andres",
+    apellido:"Andres",
+    cedula:"12430348",
+    municipio:"Andres",
+    edad:"23",
+    asistencia:false,
+    horasTriatlon: {
+      hiCaminata:0,
+      hfCaminata:0,
+      hiNatacion:0,
+      hfNatacion:0,
+      hiCiclismo:0,
+      hfCiclismo:0
+
+    },
+    triatlon: {
+      tiempoT:0,
+      caminata:0,
+      natacion:0,
+      ciclismo:0,   
+    }
+  }
+  
+] //Almacenara los datos siempre y cuando no se reinicie la pag
 
 // Recibe el evento del formulario y evita recargar la pagina para que los datos se guarden en la lista
 document.addEventListener("DOMContentLoaded", function() {
@@ -49,7 +96,22 @@ function agregarAtleta(){
     cedula:cedula,
     municipio:municipio,
     edad:edad,
-    asistencia:false
+    asistencia:false,
+    horasTriatlon: {
+      hiCaminata:0,
+      hfCaminata:0,
+      hiNatacion:0,
+      hfNatacion:0,
+      hiCiclismo:0,
+      hfCiclismo:0
+
+    },
+    triatlon: {
+      tiempoT:0,
+      caminata:0,
+      natacion:0,
+      ciclismo:0,   
+    }
   }
 
 
@@ -174,15 +236,230 @@ function checkAtleta(){
     }else{
       atleta.asistencia = true;
       agregarAtletaTabla2(atleta);
+      alert("Atleta registrado")
     }
   }
 
 }
 
 function agregarAtletaTabla2(atleta){
-  let table = document.getElementById("table-competition");
-  let fila = document.createElement("tr");
-  fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad ;
-  table.appendChild(fila);
+let table = document.getElementById("table-competition");
+let tbody = table.querySelector("tbody");
+let fila = document.createElement("tr");
+fila.innerHTML = "<td>" + atleta.nombre + "</td><td>" + atleta.apellido + "</td><td>" + atleta.cedula + "</td><td>" + atleta.municipio + "</td><td>" + atleta.edad + "</td>";
+
+tbody.appendChild(fila);
+}
+
+
+function comenzarTriatlon(){
+
+  for (let atleta of atletas){
+    
+    if (atleta.asistencia=== true){   
+    const boton = document.getElementById("start");
+    // Deshabilitar el botón
+    boton.disabled = true;     
+            
+      return Triatlon()
+    }
+  }
+
+  alert("No hay nadie registrado para comenzar el triatlon")
+}
+
+
+function Triatlon(){
+  
+  const distanciaMaraton = 10
+  const distanciaNatacion = 10
+  const distanciaCiclismo = 30
+  const velocidadMaratonKH = 7
+  const velocidadNatacionKH = 6.19
+  const velocidadCiclismoKH = 45
+
+  var ahora = new Date();
+  var hora = ahora.getHours();
+  var minuto = ahora.getMinutes();
+  var segundo = ahora.getSeconds();
+
+  // Obtener todas las filas del cuerpo de la tabla
+  var filas = document.querySelectorAll("#table-competition tbody tr");
+    filas.forEach(function(fila) {
+    var nuevaColumna = document.createElement("td");
+    nuevaColumna.textContent = `${hora}:${minuto}:${segundo}`;
+    fila.appendChild(nuevaColumna);
+});
+
+for (let atleta of atletas){
+
+  if (atleta.asistencia === true){
+    atleta.horasTriatlon.hiCaminata = `${hora}:${minuto}:${segundo}`
+    simularMaraton(atleta,distanciaMaraton,velocidadMaratonKH)
+    simularNatacion(atleta,distanciaNatacion,velocidadNatacionKH)
+    simularCiclismo(atleta,distanciaCiclismo,velocidadCiclismoKH)
+    
+    
+
+  }
 
 }
+
+c1 = []
+c2 = []
+c3 = []
+c4 = []
+c5 = []
+c6 = []
+
+for (let atleta of atletas){
+
+  c1.push(atleta.horasTriatlon.hfCaminata)
+  c2.push(atleta.horasTriatlon.hiNatacion)
+  c3.push(atleta.horasTriatlon.hfNatacion)
+  c4.push(atleta.horasTriatlon.hiCiclismo)
+  c5.push(atleta.horasTriatlon.hfCiclismo)
+  let hora = parseInt(atleta.triatlon.tiempoT)
+  let minutosDecimal = (parseFloat(atleta.triatlon.tiempoT) - hora) * 60;
+
+// Obtener la parte entera de los minutos (minutos completos)
+let minutosCompletos = Math.floor(minutosDecimal);
+let segundos = Math.round((minutosDecimal - minutosCompletos) * 60);
+  c6.push(`${hora}:${minutosCompletos}:${segundos}`)
+}
+
+columnasResultados = [c1,c2,c3,c4,c5,c6]
+
+for (let i = 0; i < columnasResultados.length; i++) {
+  // Se usa let para crear un cierre sobre la variable columna
+  let columna = columnasResultados[i];
+  
+  // Se utiliza un IIFE (Immediately Invoked Function Expression) para capturar el valor actual de columna
+  // dentro de cada iteración del bucle
+  (function(columna) {
+      // Se utiliza setTimeout dentro del IIFE para ejecutar actualizarTabla(columna) después de 5 segundos
+      setTimeout(function() {
+          actualizarTabla(columna);
+      }, i * 2000); // Se multiplica i por 5000 para que cada llamada a setTimeout se ejecute después de 5 segundos de la anterior
+  })(columna);
+}
+
+
+}
+
+
+
+function simularMaraton(atleta,distanciaTotal,velocidad){
+
+  while(atleta.triatlon.caminata < distanciaTotal){
+  let tiempo = Math.random()
+  
+  let distanciaParcial =  tiempo * velocidad;
+  atleta.triatlon.tiempoT +=  tiempo
+  atleta.triatlon.caminata += distanciaParcial
+  }
+  var ahora = new Date();
+  var hora = ahora.getHours() + Math.floor(atleta.triatlon.tiempoT);
+  var minuto = Math.floor((ahora.getMinutes() + (atleta.triatlon.tiempoT % 1).toFixed(2) * 100) / 10);
+  var segundo = ahora.getSeconds();
+  if (minuto >= 60) {
+    hora += Math.floor(minuto / 60);
+    minuto %= 60;
+  }
+  
+    if (hora >= 23){
+      hora  -= 23;
+    }
+  
+
+  atleta.horasTriatlon.hfCaminata = `${hora}:${minuto}:${segundo}`
+  atleta.horasTriatlon.hiNatacion = `${hora}:${minuto}:${segundo}`
+ 
+}
+
+function simularNatacion(atleta,distanciaTotal,velocidad){
+
+  while(atleta.triatlon.natacion < distanciaTotal){
+  let tiempo = Math.random()
+  let distanciaParcial =  tiempo * velocidad;
+  atleta.triatlon.tiempoT +=  tiempo
+  atleta.triatlon.natacion += distanciaParcial
+  }
+  var ahora = new Date();
+  var hora = ahora.getHours() + Math.floor(atleta.triatlon.tiempoT);
+  var minuto = Math.floor((ahora.getMinutes() + (atleta.triatlon.tiempoT % 1).toFixed(2) * 100) / 10);
+  var segundo = ahora.getSeconds();
+  if (minuto >= 60) {
+    hora += Math.floor(minuto / 60);
+    minuto %= 60;
+  }
+  
+    if (hora >= 23){
+      hora  -= 23;
+    }
+  
+
+  atleta.horasTriatlon.hfNatacion = `${hora}:${minuto}:${segundo}`
+  atleta.horasTriatlon.hiCiclismo = `${hora}:${minuto}:${segundo}`
+  
+  
+}
+
+function simularCiclismo(atleta,distanciaTotal,velocidad){
+
+  while(atleta.triatlon.ciclismo < distanciaTotal){
+  let tiempo = Math.random()
+  
+  let distanciaParcial =  tiempo * velocidad;
+  atleta.triatlon.tiempoT +=  tiempo
+  atleta.triatlon.ciclismo += distanciaParcial
+  }
+  var ahora = new Date();
+  var hora = ahora.getHours() + Math.floor(atleta.triatlon.tiempoT);
+  var minuto = Math.floor((ahora.getMinutes() + (atleta.triatlon.tiempoT % 1).toFixed(2) * 100) / 10);
+  var segundo = ahora.getSeconds();
+ 
+
+// Convertir a números enteros
+  if (minuto >= 60) {
+  hora += Math.floor(minuto / 60);
+  minuto %= 60;
+}
+
+  if (hora >= 23){
+    hora  -= 23;
+  }
+
+  atleta.horasTriatlon.hfCiclismo = `${hora}:${minuto}:${segundo}`
+  
+  
+}
+
+
+function actualizarTabla(datos) {
+  var tabla = document.getElementById("table-competition");
+
+// Obtén una referencia al cuerpo de la tabla
+var cuerpoTabla = tabla.getElementsByTagName('tbody')[0];
+
+// Itera sobre el array de datos
+for (var i = 0; i < datos.length; i++) {
+    // Obtén la fila correspondiente (puedes ajustar esto según tu estructura de tabla)
+    var fila = cuerpoTabla.rows[i];
+
+    // Crea una nueva celda en la fila y agrega el dato del array
+    var nuevaCelda = fila.insertCell(-1);
+    nuevaCelda.textContent = datos[i];
+}
+  
+}
+
+
+
+  
+
+
+
+
+  
+

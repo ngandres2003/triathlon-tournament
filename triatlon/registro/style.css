@@ -135,6 +135,7 @@ main p{
     background-color:#00CED1;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 
 
@@ -199,11 +200,12 @@ main p{
     background-color: #007c7e;
     border-radius: 15%;
     border: 5px solid white;
+    cursor: pointer;
 }
 
-.button-validate button:hover{
-    color: white;
-    background-color: #00CED1;
+.button-validate button:hover , .button-start:hover{
+    color:#007c7e;
+    background-color:white;
 }
 
 .button-validate input{
@@ -245,6 +247,23 @@ main p{
     font-size: .9rem;
     border:white solid 2px;
     padding: 0 5px;
+}
+
+.button-start{
+    text-decoration: none;
+    width: 200px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    transition: 0.4s;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    background-color:#00CED1;
+    border: none;
+    border-radius: 15%;
+    cursor: pointer;
+    
 }
 
 
