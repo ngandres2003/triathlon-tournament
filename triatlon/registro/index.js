@@ -426,7 +426,9 @@ function ordenarTabla() {
       return secondsA - secondsB;
   });
 
-  resultsTable.innerHTML = resultsTableHead.innerHTML;
-  sortedRows.forEach(row => resultsTable.appendChild(row));
-}
+  // Clear existing rows in results table
+  resultsTable.innerHTML = '';
 
+  // Append sorted rows to results table
+  sortedRows.forEach(row => resultsTable.appendChild(row.cloneNode(true)));
+}
