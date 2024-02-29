@@ -1,51 +1,5 @@
 
 const atletas = [
-  {
-    nombre:"Andres",
-    apellido:"Ng",
-    cedula:"29764828",
-    municipio:"puerto",
-    edad:"45",
-    asistencia:false,
-    horasTriatlon: {
-      hiCaminata:0,
-      hfCaminata:0,
-      hiNatacion:0,
-      hfNatacion:0,
-      hiCiclismo:0,
-      hfCiclismo:0
-
-    },
-    triatlon: {
-      tiempoT:0,
-      caminata:0,
-      natacion:0,
-      ciclismo:0,   
-    }
-  },{
-    nombre:"Andres",
-    apellido:"Andres",
-    cedula:"12430348",
-    municipio:"Andres",
-    edad:"23",
-    asistencia:false,
-    horasTriatlon: {
-      hiCaminata:0,
-      hfCaminata:0,
-      hiNatacion:0,
-      hfNatacion:0,
-      hiCiclismo:0,
-      hfCiclismo:0
-
-    },
-    triatlon: {
-      tiempoT:0,
-      caminata:0,
-      natacion:0,
-      ciclismo:0,   
-    }
-  }
-  
 ] //Almacenara los datos siempre y cuando no se reinicie la pag
 
 // Recibe el evento del formulario y evita recargar la pagina para que los datos se guarden en la lista
