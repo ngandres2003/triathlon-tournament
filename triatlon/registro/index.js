@@ -273,13 +273,38 @@ for (let atleta of atletas){
   c3.push(atleta.horasTriatlon.hfNatacion)
   c4.push(atleta.horasTriatlon.hiCiclismo)
   c5.push(atleta.horasTriatlon.hfCiclismo)
-  let hora = parseInt(atleta.triatlon.tiempoT)
-  let minutosDecimal = (parseFloat(atleta.triatlon.tiempoT) - hora) * 60;
 
-// Obtener la parte entera de los minutos (minutos completos)
-let minutosCompletos = Math.floor(minutosDecimal);
-let segundos = Math.round((minutosDecimal - minutosCompletos) * 60);
-  c6.push(`${hora}:${minutosCompletos}:${segundos}`)
+  let horaI = parseInt(atleta.horasTriatlon.hiCaminata.slice(0,2))
+  let horaF = parseInt(atleta.horasTriatlon.hfCiclismo.slice(0,2))
+ 
+
+  let minutoI = parseInt(atleta.horasTriatlon.hiCaminata.slice(3,5))
+  let minutoF = parseInt(atleta.horasTriatlon.hfCiclismo.slice(3,5))
+
+  let hora, minuto;
+
+// Calcular la diferencia de horas
+if (horaF < horaI) {
+    // Atraviesa la medianoche, ajustar la diferencia de horas
+    hora = 24 - (horaI - horaF);
+} else {
+    hora = horaF - horaI;
+}
+
+// Calcular la diferencia de minutos
+if (minutoF < minutoI) {
+    // Necesita ajuste debido a que los minutos finales son menores que los iniciales
+    hora--; // Restar una hora
+    minuto = 60 - (minutoI - minutoF);
+} else {
+    minuto = minutoF - minutoI;
+}
+
+
+
+
+
+  c6.push(`${hora}:${minuto}:25`)
 }
 
 columnasResultados = [c1,c2,c3,c4,c5,c6]
